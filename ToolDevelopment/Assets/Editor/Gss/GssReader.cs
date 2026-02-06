@@ -17,7 +17,7 @@ public class GssReader : EditorWindow
     private string sheetId;
     private string sheetName;
 
-    [MenuItem("Tools/GSS Reader")]
+    //[MenuItem("Tools/GSS Reader")]
     private static void Open()
     {
         GetWindow<GssReader>("GSS reader");
