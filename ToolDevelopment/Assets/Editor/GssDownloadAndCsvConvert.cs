@@ -11,15 +11,6 @@ using UnityEngine.Rendering;
 
 public class GssDownloadAndCsvConvert : EditorWindow
 {
-    #region ウィンドウの状態を管理するenum
-    private enum WindowState
-    {
-        gssDownload,
-        csvConvert
-    }
-    private WindowState windowState = WindowState.gssDownload;
-    #endregion
-
     #region GSSダウンロードに使う変数
     private string sheetId;
     private string sheetName;
@@ -35,7 +26,12 @@ public class GssDownloadAndCsvConvert : EditorWindow
     [SerializeField] private int ruleCount = 0;
     [SerializeField] private List<CsvConvertRule> rules = new();
 
+    private Vector2 scrollPos = Vector2.zero;
+
     private const string SAVE_FOLDER = "Assets/MasterData/SO";
+
+    private const float RULE_HEIGHT = 90.0f;
+    private const float MAX_RULE_AREA_HEIGHT = 350.0f;
     #endregion
 
 
@@ -163,7 +159,7 @@ public class GssDownloadAndCsvConvert : EditorWindow
     {
         EditorGUILayout.BeginVertical(GUILayout.Width(position.width * 0.5f));
 
-        GUILayout.Label("CSV → ScriptableObject", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("CSV → ScriptableObject", EditorStyles.boldLabel);
 
         csvFile = (TextAsset)EditorGUILayout.ObjectField(
             "CSV File",
@@ -182,13 +178,14 @@ public class GssDownloadAndCsvConvert : EditorWindow
             Convert();
         }
         GUI.enabled = true;
+        EditorGUILayout.Space();
         GUILayout.EndVertical();
     }
 
     private void DrawRuleSettings()
     {
         EditorGUILayout.LabelField("変換ルール設定", EditorStyles.boldLabel);
-
+        EditorGUILayout.LabelField("ScriptableObjectに登録する要素数を入力", EditorStyles.boldLabel);
         int newCount = EditorGUILayout.IntField("Rule Count", ruleCount);
         if (newCount != ruleCount)
         {
@@ -196,6 +193,19 @@ public class GssDownloadAndCsvConvert : EditorWindow
             AdjustRuleList();
         }
 
+        // 設定する各要素の説明
+        if (ruleCount != 0)
+        {
+            EditorGUILayout.LabelField("CSV Column Index → Ruleと同じ数字", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("Key → 要素の名前(ID → id等)", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("Type → 扱う型", EditorStyles.boldLabel);
+        }
+
+
+        // ScriptableObjectの要素設定
+        float ruleAreaHeight =
+            Mathf.Min(rules.Count * RULE_HEIGHT, MAX_RULE_AREA_HEIGHT);
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.MaxHeight(ruleAreaHeight));
         for (int i = 0; i < rules.Count; i++)
         {
             EditorGUILayout.BeginVertical("box");
@@ -212,6 +222,7 @@ public class GssDownloadAndCsvConvert : EditorWindow
 
             EditorGUILayout.EndVertical();
         }
+        EditorGUILayout.EndScrollView();
     }
 
     private void AdjustRuleList()
