@@ -37,6 +37,8 @@ public class GssDownloadAndCsvConvert : EditorWindow
     #region GSSダウンロードに使う変数
     private string sheetId;
     private string sheetName;
+
+    private string sheetGid = "0";
     #endregion
 
     private string lastDownloadedCsvPath;
@@ -72,7 +74,7 @@ public class GssDownloadAndCsvConvert : EditorWindow
         EditorGUILayout.BeginHorizontal();
 
         DrawGssReader();
-        DrawCsvConverter();
+        //DrawCsvConverter();
 
         EditorGUILayout.EndHorizontal();
     }
@@ -91,6 +93,8 @@ public class GssDownloadAndCsvConvert : EditorWindow
         EditorGUILayout.Space();
         GUILayout.Label("GSS左下のシートの名前", EditorStyles.boldLabel);
         sheetName = EditorGUILayout.TextField("Sheet Name", sheetName);
+
+        sheetGid = EditorGUILayout.TextField("Sheet GID", sheetGid);
         // EditorGUILayoutはEditor専用のGUI要素を作成するためのクラス
         // 入力値を直接変数に格納できる
         // TextFieldは文字列入力フィールドを作成するメソッド
@@ -127,7 +131,8 @@ public class GssDownloadAndCsvConvert : EditorWindow
     private IEnumerator DownloadCsv()
     {
         string url =
-            $"https://docs.google.com/spreadsheets/d/{sheetId}/gviz/tq?tqx=out:csv&sheet={sheetName}";
+        $"https://docs.google.com/spreadsheets/d/{sheetId}/export?format=csv&gid={sheetGid}";
+
         // GSSのCSV取得URL
         // tqx=out:csv　→　CSV形式で出力する指定
         // sheet=シート名　→　取得するシート名を指定
