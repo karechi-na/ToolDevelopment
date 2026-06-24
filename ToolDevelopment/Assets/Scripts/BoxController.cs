@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+/// <summary>
+/// ‚­‚Ÿ‚—‚¹‚„‚’‚†‚”‚‡‚™‚Ó‚¶‚±‚Œ‚
+/// </summary>
 public class BoxController : MonoBehaviour
 {
     private Rigidbody rb;

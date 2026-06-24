@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +10,27 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;           // UnityWebRequestを使ってHTTP通信を行うために必要
 using UnityEngine.Rendering;
+
+public enum CsvValueType
+{
+    Int,
+    Float,
+    Bool,
+    String
+}
+
+[Serializable]
+public class CsvConvertRule
+{
+    [Tooltip("CSVの列番号(0始まり)")]
+    public int csvColumnIndex;
+
+    [Tooltip("SOに入れるキー")]
+    public string key;
+
+    [Tooltip("変換型")]
+    public CsvValueType type;
+}
 
 public class GssDownloadAndCsvConvert : EditorWindow
 {
@@ -250,9 +273,20 @@ public class GssDownloadAndCsvConvert : EditorWindow
 
             try
             {
+                // IDをint型にパース
                 string rawId = columns[0].Trim().Trim('"').Trim('\uFEFF');
                 int id = int.Parse(rawId);
-                string assetPath = $"{SAVE_FOLDER}/{id}.asset";
+
+                // 名前をトリミング
+                string rawName = columns[1].Trim().Trim('"');
+                string assetName = SanitizeFileName(rawName);
+
+                // 名前が空だったときのフォールバック
+                if (string.IsNullOrEmpty(assetName))
+                {
+                    assetName = rawId;
+                }
+                string assetPath = $"{SAVE_FOLDER}/{assetName}.asset";
 
                 SampleMasterData data =
                     AssetDatabase.LoadAssetAtPath<SampleMasterData>(assetPath);
@@ -263,6 +297,7 @@ public class GssDownloadAndCsvConvert : EditorWindow
                 }
 
                 // 初期化(全上書き)
+                //data.name = assetFileName;
                 data.id = id;
                 data.intValues.Clear();
                 data.floatValues.Clear();
@@ -299,6 +334,15 @@ public class GssDownloadAndCsvConvert : EditorWindow
         return line.Split(',')
                    .Select(v => v.Trim())
                    .ToArray();
+    }
+
+    private string SanitizeFileName(string name)
+    {
+        foreach (char c in Path.GetInvalidFileNameChars())
+        {
+            name = name.Replace(c.ToString(), "");
+        }
+        return name;
     }
 
     private void ApplyRule(SampleMasterData data, CsvConvertRule rule, string raw)
@@ -358,3 +402,5 @@ public class GssDownloadAndCsvConvert : EditorWindow
 
     }
 }
+
+#endif
