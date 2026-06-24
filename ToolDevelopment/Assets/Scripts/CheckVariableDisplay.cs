@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// "このクラスは自分で作ったAttributeの動作確認をするためのクラスです。
+/// 作ったAttributeの種類としては、変数の表示切り替えをするもの、
+/// int型の変数をボタンで増減できるようにするものです。
+/// </summary>
 public class CheckVariableDisplay : MonoBehaviour
 {
     [Header("Check Variable Display")]
