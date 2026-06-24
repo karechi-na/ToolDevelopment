@@ -8,12 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Scenes/CheckScene.unity
-    guid: 7b03a731bdc543649b18bd4236c5cbaf
   - enabled: 0
     path: Assets/Scenes/GrayOutScene.unity
     guid: f3e4952bd16b55643b922f6839fda19c
+  - enabled: 1
+    path: Assets/Scenes/CheckScene.unity
+    guid: 7b03a731bdc543649b18bd4236c5cbaf
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
