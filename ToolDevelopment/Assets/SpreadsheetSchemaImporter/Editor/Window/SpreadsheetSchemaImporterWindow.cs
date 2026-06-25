@@ -6,9 +6,14 @@ using UnityEngine;
 public class SpreadsheetSchemaImporterWindow : EditorWindow
 {
     private TextAsset csvFile;
+
+    private string sheetId;
+    private string sheetGid;
+
     private string className = "Hoge";
     private DefaultAsset scriptOutputFolder;
     private DefaultAsset assetOutputFolder;
+    private DataSourceType dataSourceType = DataSourceType.Csv;
 
     [MenuItem("Tools/SpreadSheet Schema Importer")]
     private static void Open()
@@ -23,13 +28,23 @@ public class SpreadsheetSchemaImporterWindow : EditorWindow
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("クラス生成", EditorStyles.boldLabel);
 
-        EditorGUILayout.LabelField("変換するCSVファイル");
-        csvFile = (TextAsset)EditorGUILayout.ObjectField(
-            csvFile,
-            typeof(TextAsset),
-            false
+        EditorGUILayout.LabelField("入力設定", EditorStyles.boldLabel);
+        dataSourceType = (DataSourceType)EditorGUILayout.EnumPopup(
+            "入力元",
+            dataSourceType
         );
 
+        switch(dataSourceType)
+        {
+            case DataSourceType.Csv:
+                DrawCsvSettings();
+                break;
+
+            case DataSourceType.GoogleSpreadsheet:
+                DrawGoogleSpreadsheetSettings();
+                break;
+        }
+        EditorGUILayout.Space();
         EditorGUILayout.LabelField("ScriptableObjectクラス名");
         className = EditorGUILayout.TextField(className);
 
@@ -65,6 +80,25 @@ public class SpreadsheetSchemaImporterWindow : EditorWindow
         {
             GenerateAssets();
         }
+    }
+
+    private void DrawCsvSettings()
+    {
+        EditorGUILayout.LabelField("変換するCSVファイル");
+        csvFile = (TextAsset)EditorGUILayout.ObjectField(
+            csvFile,
+            typeof(TextAsset),
+            false
+        );
+    }
+
+    private void DrawGoogleSpreadsheetSettings()
+    {
+        EditorGUILayout.LabelField("Google Spreadsheet ID");
+        sheetId = EditorGUILayout.TextField(sheetId);
+
+        EditorGUILayout.LabelField("Sheet GID");
+        sheetGid = EditorGUILayout.TextField(sheetGid);
     }
 
     private void ParseTest()
@@ -117,13 +151,22 @@ public class SpreadsheetSchemaImporterWindow : EditorWindow
 
     private SchemaData CreateSchema()
     {
-        IDataSource dataSource = new CsvFileDataSource(csvFile);
+        IDataSource dataSource = CreateDataSource();
 
         string csvText = dataSource.GetCsvText();
 
         CsvParser parser = new();
 
         return parser.Parse(csvText, className);
+    }
+
+    private IDataSource CreateDataSource()
+    {
+        return dataSourceType switch
+        {
+            DataSourceType.Csv => new CsvFileDataSource(csvFile),
+            DataSourceType.GoogleSpreadsheet => new GssDataSource(sheetId, sheetGid),
+        };
     }
 
     private string GetFolderPath(DefaultAsset folder)
