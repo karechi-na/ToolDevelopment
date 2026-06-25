@@ -8,6 +8,7 @@ public class SpreadsheetSchemaImporterWindow : EditorWindow
     private TextAsset csvFile;
     private string className = "Hoge";
     private DefaultAsset scriptOutputFolder;
+    private DefaultAsset assetOutputFolder;
 
     [MenuItem("Tools/SpreadSheet Schema Importer")]
     private static void Open()
@@ -18,19 +19,22 @@ public class SpreadsheetSchemaImporterWindow : EditorWindow
     private void OnGUI()
     {
         EditorGUILayout.LabelField("Spreadsheet Schema Importer", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("______________________________________________________________");
         EditorGUILayout.Space();
+        EditorGUILayout.LabelField("クラス生成", EditorStyles.boldLabel);
 
+        EditorGUILayout.LabelField("変換するCSVファイル");
         csvFile = (TextAsset)EditorGUILayout.ObjectField(
-            "変換するCSVファイル",
             csvFile,
             typeof(TextAsset),
             false
         );
 
-        className = EditorGUILayout.TextField("生成するクラス名", className);
+        EditorGUILayout.LabelField("ScriptableObjectクラス名");
+        className = EditorGUILayout.TextField(className);
 
+        EditorGUILayout.LabelField("生成するクラスを保存するフォルダ");
         scriptOutputFolder = (DefaultAsset)EditorGUILayout.ObjectField(
-            "保存するフォルダ",
             scriptOutputFolder,
             typeof(DefaultAsset),
             false
@@ -46,6 +50,20 @@ public class SpreadsheetSchemaImporterWindow : EditorWindow
         if (GUILayout.Button("Generate Script"))
         {
             GenerateScript();
+        }
+        EditorGUILayout.LabelField("______________________________________________________________");
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("アセット生成", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("生成するAssetを保存するフォルダ");
+        assetOutputFolder = (DefaultAsset)EditorGUILayout.ObjectField(
+            assetOutputFolder,
+            typeof(DefaultAsset),
+            false
+        );
+
+        if (GUILayout.Button("Generate Assets"))
+        {
+            GenerateAssets();
         }
     }
 
@@ -77,6 +95,22 @@ public class SpreadsheetSchemaImporterWindow : EditorWindow
         }
         catch (Exception e) 
         { 
+            Debug.LogError(e.Message);
+        }
+    }
+
+    private void GenerateAssets()
+    {
+        try
+        {
+            SchemaData schema = CreateSchema();
+
+            string outputPath = GetFolderPath(assetOutputFolder);
+
+            AssetGenerator.Generate(schema, outputPath);
+        }
+        catch (Exception e)
+        {
             Debug.LogError(e.Message);
         }
     }

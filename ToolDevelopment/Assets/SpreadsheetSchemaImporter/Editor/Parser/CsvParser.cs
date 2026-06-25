@@ -18,7 +18,7 @@ public class CsvParser
         if (names.Length != types.Length)
             throw new Exception("•Ï”–¼‚Ì”‚ÆŒ^‚Ì”‚ªˆê’v‚µ‚Ä‚È‚¢‚æB");
 
-        SchemaData schema = new() 
+        SchemaData schema = new()
         {
             ClassName = className,
         };
@@ -38,9 +38,12 @@ public class CsvParser
 
             RowData rowData = new();
 
-            foreach (string value in values)
+            for (int i = 0; i < schema.Fields.Count; i++)
             {
-                rowData.Values.Add(Clean(value));
+                string fieldName = schema.Fields[i].Name;
+                string value = i < values.Length ? Clean(values[i]) : "";
+
+                rowData.Values[fieldName] = value;
             }
 
             schema.Rows.Add(rowData);
