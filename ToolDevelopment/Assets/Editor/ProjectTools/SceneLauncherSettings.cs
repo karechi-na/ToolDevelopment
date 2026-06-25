@@ -6,9 +6,8 @@ public class SceneLauncherSettings : ScriptableObject
     public const string ASSET_PATH =
         "Assets/Editor/ProjectTools/SceneLauncherSettings.asset";
 
-    [Header("ゲーム開始のシーン")]
     [SerializeField] private SceneAsset bootScene;
-    [Header("BootSceneから始めるか")]
+    
     [SerializeField] private bool playFromBootScene = true;
     public SceneAsset BootScene => bootScene;
     public bool PlayFromBootScene => playFromBootScene;

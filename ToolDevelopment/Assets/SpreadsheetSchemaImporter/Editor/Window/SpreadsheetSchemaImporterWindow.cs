@@ -20,20 +20,17 @@ public class SpreadsheetSchemaImporterWindow : EditorWindow
         EditorGUILayout.LabelField("Spreadsheet Schema Importer", EditorStyles.boldLabel);
         EditorGUILayout.Space();
 
-        EditorGUILayout.LabelField("CSVファイルをセットしてね");
         csvFile = (TextAsset)EditorGUILayout.ObjectField(
-            "CSV File",
+            "変換するCSVファイル",
             csvFile,
             typeof(TextAsset),
             false
         );
 
-        EditorGUILayout.LabelField("生成するクラスの名前をセットしてね");
-        className = EditorGUILayout.TextField("Class Name", className);
+        className = EditorGUILayout.TextField("生成するクラス名", className);
 
-        EditorGUILayout.LabelField("保存するフォルダをセットしてね");
         scriptOutputFolder = (DefaultAsset)EditorGUILayout.ObjectField(
-            "Script Output Folder",
+            "保存するフォルダ",
             scriptOutputFolder,
             typeof(DefaultAsset),
             false
