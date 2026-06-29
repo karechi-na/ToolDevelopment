@@ -2,6 +2,12 @@ using System;
 
 public static class TypeUtility
 {
+    /// <summary>
+    /// CSVから取得した文字列を指定された型へ変換する
+    /// </summary>
+    /// <param name="raw">変換する文字列</param>
+    /// <param name="type">変換先の型</param>
+    /// <returns>変換後の型</returns>
     public static object ConvertValue(string raw, FieldType type)
     {
         return type switch
@@ -14,8 +20,14 @@ public static class TypeUtility
         };
     }
 
+    /// <summary>
+    /// 文字列をbool値へ変換する
+    /// </summary>
+    /// <param name="raw">変換する文字列</param>
+    /// <returns>変換後のbool値</returns>
     private static bool ParseBool(string raw)
     {
+        // 空白を除去し、小文字へ統一
         raw = raw.Trim().ToLower();
 
         return raw switch
