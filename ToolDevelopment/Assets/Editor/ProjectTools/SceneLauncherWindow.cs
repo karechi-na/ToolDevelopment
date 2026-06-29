@@ -68,12 +68,12 @@ public class SceneLauncherWindow : EditorWindow
 
         EditorGUILayout.PropertyField(
             serializedSettings.FindProperty("bootScene"),
-            new GUIContent("Boot Scene")
+            new GUIContent("ゲーム開始のシーン")
         );
 
         EditorGUILayout.PropertyField(
             serializedSettings.FindProperty("playFromBootScene"),
-            new GUIContent("Play From Boot Scene")
+            new GUIContent("BootSceneから始めるか")
         );
 
         serializedSettings.ApplyModifiedProperties();

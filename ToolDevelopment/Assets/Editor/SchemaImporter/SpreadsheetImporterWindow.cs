@@ -9,7 +9,7 @@ public class SpreadsheetImporterWindow : EditorWindow
 
     private string assetOutputFolder = "Assets/Generated/ScriptableObjects";
 
-    [MenuItem("Tools/SpreadSheet Schema Importer")]
+    //[MenuItem("Tools/")]
     private static void Open()
     {
         GetWindow<SpreadsheetImporterWindow>("Schema Importer");
