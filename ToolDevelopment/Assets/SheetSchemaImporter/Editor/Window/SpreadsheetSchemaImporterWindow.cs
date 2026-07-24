@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class SpreadsheetSchemaImporterWindow : EditorWindow
 {
     // CSV入力時に使用するCSVファイル
     private TextAsset csvFile;
+
+    private string sheetUrl;
 
     // Google Spreadsheet入力時に使用するスプレッドシートID
     private string sheetId;
@@ -149,11 +152,13 @@ public class SpreadsheetSchemaImporterWindow : EditorWindow
     /// </summary>
     private void DrawGoogleSpreadsheetSettings()
     {
-        EditorGUILayout.LabelField("Google Spreadsheet ID");
-        sheetId = EditorGUILayout.TextField(sheetId);
+        EditorGUILayout.LabelField("Google Spreadsheet URL");
+        sheetUrl = EditorGUILayout.TextField(sheetUrl);
+        //EditorGUILayout.LabelField("Google Spreadsheet ID");
+        //sheetId = EditorGUILayout.TextField(sheetId);
 
-        EditorGUILayout.LabelField("Sheet GID");
-        sheetGid = EditorGUILayout.TextField(sheetGid);
+        //EditorGUILayout.LabelField("Sheet GID");
+        //sheetGid = EditorGUILayout.TextField(sheetGid);
     }
 
     /// <summary>
@@ -234,10 +239,35 @@ public class SpreadsheetSchemaImporterWindow : EditorWindow
     {
         return dataSourceType switch
         {
-            DataSourceType.Csv => new CsvFileDataSource(csvFile),
-            DataSourceType.GoogleSpreadsheet => new GssDataSource(sheetId, sheetGid),
+            DataSourceType.Csv
+                => new CsvFileDataSource(csvFile),
+
+            DataSourceType.GoogleSpreadsheet
+                => CreateGoogleSpreadsheetDataSource(),
+
             _ => throw new ArgumentOutOfRangeException()
         };
+    }
+
+    private IDataSource CreateGoogleSpreadsheetDataSource()
+    {
+        var (sheetId, sheetGid) = ParseSpreadSheetUrl(sheetUrl);
+
+        return new GssDataSource(sheetId, sheetGid);
+    }
+
+    private (string sheetId, string sheetGid) ParseSpreadSheetUrl(string url)
+    {
+        Match idMatch = Regex.Match(url, @"/d/([^/]+)");
+        Match gidMatch = Regex.Match(url, @"gid=(\d+)");
+
+        if (!idMatch.Success)
+            throw new Exception("SpreadSheet IDを取得できませんでした。");
+
+        string sheetId = idMatch.Groups[1].Value;
+        string sheetGid = gidMatch.Success ? gidMatch.Groups[1].Value : "0";
+
+        return (sheetId, sheetGid);
     }
 
     /// <summary>

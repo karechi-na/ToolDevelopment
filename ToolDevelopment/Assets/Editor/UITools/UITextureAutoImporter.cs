@@ -24,40 +24,24 @@ public class UITextureAutoImporter : AssetPostprocessor
     /// </summary>
     private void OnPreprocessTexture()
     {
-        /* 
-        assetPathはAssetPostprocessorが持ってる変数
-        インポートされようとしているアセットのパスが入っている
-         */
         // ここで画像のパスが対象フォルダと一緒かを見る
         if (!assetPath.StartsWith(UI_FOLDER)) return;
 
-        /*
-        assetImporterもAssetPostprocessorが持つ変数
-        今インポートしているアセットのImporterが入っている
-        今回はOnPreprocessTexture()内なので対象はTexture
-         */
         // assetImporterをTextureImporter型にキャスト
         TextureImporter importer = (TextureImporter)assetImporter;
 
+        // 共通設定を変更
         ApplyBaseUISettings(importer);
 
         // 各フォルダに合わせて画像サイズを変更
         if (assetPath.StartsWith(ICON_FOLDER))
-        {
             importer.maxTextureSize = 512;
-        }
         else if (assetPath.StartsWith(BUTTON_FOLDER))
-        {
             importer.maxTextureSize = 1024;
-        }
         else if (assetPath.StartsWith(BACKGROUND_FOLDER))
-        {
             importer.maxTextureSize = 2048;
-        }
         else
-        {
             importer.maxTextureSize = 2048;
-        }
     }
 
     private void ApplyBaseUISettings(TextureImporter importer)
