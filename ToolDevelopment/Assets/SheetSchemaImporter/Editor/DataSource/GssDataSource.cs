@@ -29,7 +29,7 @@ public class GssDataSource : IDataSource
         if (string.IsNullOrWhiteSpace(sheetGid))
             throw new Exception("Sheet GID が入力されていないよ");
 
-        string url = 
+        string url =
             $"https://docs.google.com/spreadsheets/d/{sheetId}/export?format=csv&gid={sheetGid}";
 
         // GSSにGET通信を始める
@@ -37,9 +37,7 @@ public class GssDataSource : IDataSource
         request.SendWebRequest();
 
         // 通信完了まで待機
-        while (!request.isDone)
-        {
-        }
+        while (!request.isDone) { }
 
         if (request.result != UnityWebRequest.Result.Success)
             throw new Exception($"GSS取得に失敗したよ：{request.error}");
