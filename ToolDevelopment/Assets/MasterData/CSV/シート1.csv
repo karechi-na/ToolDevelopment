@@ -1,4 +1,0 @@
-id,displayName,hp,attack,isBoss
-string,string,int,int,bool
-slime_001,スライム,10,3,FALSE
-goblin_001,ゴブリン,20,7,TRUE

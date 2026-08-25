@@ -1,0 +1,68 @@
+<ui:UXML
+    xmlns:ui="UnityEngine.UIElements">
+
+    <ui:VisualElement class="container">
+
+        <ui:Label
+            text="PlayerPrefs Viewer"
+            class="title" />
+
+        <ui:Button
+            name="refresh-button"
+            text="Refresh" />
+
+        <ui:TextField
+            name="key-field"
+            label="Key" />
+
+        <ui:DropdownField
+            name="type-field"
+            label="Type"
+            choices="String,Int,Float"
+            value="String" />
+
+        <ui:TextField
+            name="value-field"
+            label="Value" />
+
+         <ui:VisualElement class="button-container">
+
+            <ui:Button
+                name="new-button"
+                text="New" />
+
+            <ui:Button
+                name="save-button"
+                text="Save" />
+
+            <ui:Button
+                name="delete-button"
+                text="Delete" />
+        </ui:VisualElement>
+
+        <ui:VisualElement class="list-container">
+
+            <ui:VisualElement class="list-header">
+                <ui:Label
+                    text="Key"
+                    class="key-column" />
+
+                <ui:Label
+                    text="Type"
+                    class="type-column" />
+
+                <ui:Label
+                    text="Value"
+                    class="value-column" />
+            </ui:VisualElement>
+
+
+            <ui:ListView
+                name="prefs-list"
+                fixed-item-height="24" />
+
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+
+</ui:UXML>
