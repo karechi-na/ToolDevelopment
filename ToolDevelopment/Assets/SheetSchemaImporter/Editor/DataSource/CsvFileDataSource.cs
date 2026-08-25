@@ -1,27 +1,30 @@
 using UnityEngine;
 
-/// <summary>
-/// CSVファイルを変換する際のデータを取り出すためのクラス
-/// </summary>
-public class CsvFileDataSource : IDataSource
+namespace Karechina.SchemaImporter
 {
-    // CSVファイル
-    private readonly TextAsset csvFile;
-
-    // CSVファイルを受け取る
-    public CsvFileDataSource(TextAsset csvFile)
-    {
-        this.csvFile = csvFile;
-    }
-
     /// <summary>
-    /// CSVファイル内の文字列を取得
+    /// CSVファイルを変換する際のデータを取り出すためのクラス
     /// </summary>
-    public string GetCsvText()
+    public class CsvFileDataSource : IDataSource
     {
-        if (csvFile == null)
-            throw new System.Exception("CSVファイルが指定されていないよ。");
+        // CSVファイル
+        private readonly TextAsset csvFile;
 
-        return csvFile.text;
+        // CSVファイルを受け取る
+        public CsvFileDataSource(TextAsset csvFile)
+        {
+            this.csvFile = csvFile;
+        }
+
+        /// <summary>
+        /// CSVファイル内の文字列を取得
+        /// </summary>
+        public string GetCsvText()
+        {
+            if (csvFile == null)
+                throw new System.Exception("CSVファイルが指定されていないよ。");
+
+            return csvFile.text;
+        }
     }
 }

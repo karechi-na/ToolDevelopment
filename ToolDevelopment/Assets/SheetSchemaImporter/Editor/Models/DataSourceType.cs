@@ -1,5 +1,8 @@
-public enum DataSourceType
+namespace Karechina.SchemaImporter
 {
-    Csv,
-    GoogleSpreadsheet
+    public enum DataSourceType
+    {
+        Csv,
+        GoogleSpreadsheet
+    }
 }

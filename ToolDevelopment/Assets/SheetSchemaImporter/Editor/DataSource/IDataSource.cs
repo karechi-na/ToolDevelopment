@@ -1,4 +1,8 @@
-public interface IDataSource
+namespace Karechina.SchemaImporter
 {
-    string GetCsvText();
+
+    public interface IDataSource
+    {
+        string GetCsvText();
+    }
 }

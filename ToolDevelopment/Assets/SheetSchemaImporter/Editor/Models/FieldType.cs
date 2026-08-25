@@ -1,7 +1,10 @@
-public enum FieldType
+namespace Karechina.SchemaImporter
 {
-    String,
-    Int,
-    Float,
-    Bool
+    public enum FieldType
+    {
+        String,
+        Int,
+        Float,
+        Bool
+    }
 }

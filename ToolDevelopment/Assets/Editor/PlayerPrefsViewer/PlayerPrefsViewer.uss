@@ -1,0 +1,65 @@
+.container {
+    padding: 12px;
+}
+
+.title {
+    font-size: 18px;
+    unity-font-style: bold;
+
+    margin-bottom: 12px;
+}
+
+.button-container {
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.button-container > Button{
+    flex-grow: 1;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.list-container {
+    margin-top: 15px;
+    flex-grow: 1;
+}
+
+.list-title {
+    unity-font-style: bold;
+    margin-bottom: 5px;
+}
+
+.list-header {
+    flex-direction: row;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-bottom: 3px;
+
+    unity-font-style: bold;
+}
+
+.key-column {
+    flex-grow: 1;
+}
+
+.type-column {
+    width: 80px;
+}
+
+.value-column {
+    width: 120px
+}
+
+.prefs-row{
+    flex-direction: row;
+    align-items: center;
+
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#prefs-list {
+    flex-grow: 1;
+    min-height: 150px;
+}

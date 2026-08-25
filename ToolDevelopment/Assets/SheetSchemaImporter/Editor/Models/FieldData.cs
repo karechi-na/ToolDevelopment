@@ -1,7 +1,10 @@
-public class FieldData
+namespace Karechina.SchemaImporter
 {
-    // •ÏŠ·Œã‚Ì•Ï”–¼
-    public string Name;
-    // •Ï”‚ÌŒ^
-    public FieldType Type;
+    public class FieldData
+    {
+        // •ÏŠ·Œã‚Ì•Ï”–¼
+        public string Name;
+        // •Ï”‚ÌŒ^
+        public FieldType Type;
+    }
 }
