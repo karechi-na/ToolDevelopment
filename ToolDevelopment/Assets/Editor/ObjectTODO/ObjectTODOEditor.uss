@@ -1,0 +1,47 @@
+.container {
+    padding: 12px;
+}
+
+.title {
+    font-size: 18px;
+    unity-font-style: bold;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    unity-font-style: bold;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.selected-object {
+    margin-bottom: 8px;
+}
+
+.todo-field {
+    min-height: 60px;
+    margin-bottom: 6px;
+}
+
+#add-button {
+    height: 28px;
+    margin-bottom: 10px;
+}
+
+.todo-list {
+    flex-grow: 1;
+    min-height: 120px;
+}
+
+.todo-row{
+    flex-direction: row;
+    align-items: center;
+}
+
+.todo-toggle{
+    flex-grow: 1;
+}
+
+#delete-button{
+    width: 70px;
+}
