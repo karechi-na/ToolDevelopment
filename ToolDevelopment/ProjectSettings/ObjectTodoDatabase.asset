@@ -18,11 +18,6 @@ MonoBehaviour:
     todos:
     - text: "\u3042\u30FC\u30C6\u30B9\u30C6\u30B9"
       completed: 0
-  - objectId: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1230814794-0
-    objectName: Audio Source
-    todos:
-    - text: "\u3042\u30FC\u30C6\u30B9\u30C6\u30B9"
-      completed: 0
   - objectId: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-588263603-0
     objectName: Particle System
     todos: []
@@ -31,4 +26,7 @@ MonoBehaviour:
     todos: []
   - objectId: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1410678648-0
     objectName: Cube
+    todos: []
+  - objectId: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-870132251-0
+    objectName: EventSystem
     todos: []
