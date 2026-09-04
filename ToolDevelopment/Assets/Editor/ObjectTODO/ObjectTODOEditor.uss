@@ -45,3 +45,40 @@
 #delete-button{
     width: 70px;
 }
+
+.no-selection{
+    margin-top: 8px;
+    margin-bottom: 12px;
+    unity-font-style: italic;
+}
+
+#registered-foldout{
+    margin-top: 12px;
+}
+
+.registered-list{
+    min-height: 120px;
+    margin-top: 4px;
+}
+
+.registered-row {
+    flex-direction: row;
+    align-items: center;
+    height: 32px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.registered-name {
+    flex-grow: 1;
+}
+
+.todo-progress {
+    min-width: 50px;
+    unity-text-align: middle-right;
+}
+
+.remove-button {
+    width: 70px;
+    margin-left: 6px;
+}
