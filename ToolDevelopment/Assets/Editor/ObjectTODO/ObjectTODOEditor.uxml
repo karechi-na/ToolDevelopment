@@ -1,36 +1,62 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements">
-	<ui:VisualElement class="container">
-		
-		<ui:Label
-			text="Object TODO"
-			class="title" />
+    <ui:VisualElement class="container">
 
-		<ui:Label
-			text="Selected Object"
-			class="section-title" />
+        <ui:Label
+            text="Object TODO"
+            class="title" />
 
-		<ui:Label
-			name="selected-object-label"
-			text="GameObjectが選択されていません"
-			class="selected-object" />
+        <!-- 選択中GameObjectの詳細 -->
+        <ui:VisualElement name="detail-container">
 
-		<ui:Label
-			text="TODO"
-			class="section-title" />
+            <ui:Label
+                text="Selected Object"
+                class="section-title" />
 
-		<ui:TextField
-			name="todo-field"
-			multiline="true"
-			class="todo-field" />
+            <ui:Label
+                name="selected-object-label"
+                text="GameObjectが選択されていません"
+                class="selected-object" />
 
-		<ui:Button
-			name="add-button"
-			text="+ Add TODO" />
+            <ui:Label
+                text="TODO"
+                class="section-title" />
 
-		<ui:ListView
-			name="todo-list"
-			fixed-item-height="24"
-			class="todo-list" />
+            <ui:TextField
+                name="todo-field"
+                multiline="true"
+                class="todo-field" />
 
-	</ui:VisualElement>
+            <ui:Button
+                name="add-button"
+                text="+ Add TODO" />
+
+            <ui:ListView
+                name="todo-list"
+                fixed-item-height="24"
+                class="todo-list" />
+
+        </ui:VisualElement>
+
+
+        <!-- GameObject未選択時 -->
+        <ui:Label
+            name="no-selection-label"
+            text="GameObjectが選択されていません"
+            class="no-selection" />
+
+
+        <!-- 登録済みGameObject一覧 -->
+        <ui:Foldout
+            name="registered-foldout"
+            text="Registered Objects"
+            value="false">
+
+            <ui:ListView
+                name="registered-list"
+                fixed-item-height="32"
+                class="registered-list" />
+
+        </ui:Foldout>
+
+    </ui:VisualElement>
 </ui:UXML>

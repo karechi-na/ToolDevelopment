@@ -12,21 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5abef97d67df747b80c10cf3754805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  todoDataList:
-  - objectId: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-2096839741-0
-    objectName: TestObject
-    todos:
-    - text: "\u3042\u30FC\u30C6\u30B9\u30C6\u30B9"
-      completed: 0
-  - objectId: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-588263603-0
-    objectName: Particle System
-    todos: []
-  - objectId: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1401487147-0
-    objectName: Canvas
-    todos: []
-  - objectId: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1410678648-0
-    objectName: Cube
-    todos: []
-  - objectId: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-870132251-0
-    objectName: EventSystem
-    todos: []
+  todoDataList: []

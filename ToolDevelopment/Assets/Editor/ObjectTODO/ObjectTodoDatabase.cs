@@ -11,10 +11,21 @@ public class ObjectTodoDatabase : ScriptableSingleton<ObjectTodoDatabase>
 
     public void SaveDatabase()
     {
+		Cleanup();
+
         Save(true);
 
         DataChanged?.Invoke();
     }
+
+	public void Cleanup()
+	{
+		todoDataList.RemoveAll(data => 
+			data == null || 
+			data.todos == null || 
+			data.todos.Count == 0
+		);
+	}
 
 	public bool TryDeleteIfCompleted(ObjectTodoData todoData)
 	{
