@@ -35,6 +35,11 @@
                 fixed-item-height="24"
                 class="todo-list" />
 
+            <ui:Button
+                name="unregister-button"
+                text="Unregister TODO list"
+                class="unregister-button" />
+
         </ui:VisualElement>
 
 

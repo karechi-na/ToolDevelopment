@@ -1,0 +1,16 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Editor/Test/Test.uss?fileID=7433441132597879392&amp;guid=094c32bd009f7ac40a9c4617ef405ae4&amp;type=3#Test" />
+    <ui:VisualElement name="root" style="flex-grow: 1;">
+        <ui:VisualElement name="header" style="flex-grow: 1; height: 50px; flex-shrink: 0; min-height: 50px; max-height: 50px; background-color: rgb(85, 204, 195);">
+            <ui:Label text="UI Toolkit Sandbox" style="height: 50px; justify-content: flex-start; align-items: stretch;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="body" style="flex-grow: 1; flex-direction: row; flex-shrink: 0;">
+            <ui:VisualElement name="sidebar" style="flex-grow: 1; width: 180px; min-width: 180px; max-width: 180px; flex-shrink: 0;">
+                <ui:Button text="Button" name="Dashboard" />
+                <ui:Button text="Button" name="Settings" />
+                <ui:Button text="Button" name="About" />
+            </ui:VisualElement>
+            <ui:VisualElement name="content" style="flex-grow: 1; flex-shrink: 0;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
