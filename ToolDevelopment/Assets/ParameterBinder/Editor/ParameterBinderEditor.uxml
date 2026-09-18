@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/ParameterBinder/Editor/ParameterBinderEditor.uss?fileID=7433441132597879392&amp;guid=532cf6a873b43bb48acd10f7d7faddc7&amp;type=3#ParameterBinderEditor" />
+    <ui:VisualElement name="root" class="parameter-binder-root">
+        <ui:VisualElement name="header" class="header" style="flex-grow: 1;">
+            <ui:Label text="Parameter Binder" name="title" class="header-title" />
+            <ui:Label text="ScriptableObject → MonoBehaviour" name="description" class="header-description" />
+        </ui:VisualElement>
+        <ui:VisualElement name="settings" class="settings" style="flex-grow: 1;">
+            <uie:PropertyField name="source-field" label="Source" binding-path="source" />
+            <ui:VisualElement name="target-container" />
+        </ui:VisualElement>
+        <ui:VisualElement name="bindings-section" class="bindings-section" style="flex-grow: 1;">
+            <ui:VisualElement name="bindings-header" class="bindings-header" style="flex-grow: 1;">
+                <ui:Label text="Bindings" name="bindings-title" class="bindings-title" />
+                <ui:Label text="0 / 0" name="bindings-summary" class="bindings-summary" />
+            </ui:VisualElement>
+            <ui:VisualElement name="binding-container" class="binding-container" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

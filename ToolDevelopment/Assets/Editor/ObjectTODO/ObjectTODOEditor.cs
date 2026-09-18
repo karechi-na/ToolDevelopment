@@ -19,6 +19,8 @@ public class ObjectTODOEditor : EditorWindow
     // TODOリストを表示するListView
     private ListView todoList;
 
+    private Button unregisterButton;
+
     // TODO詳細を表示するコンテナ
     private VisualElement detailContainer;
     // TODOが未選択のときに表示するメッセージ
@@ -94,6 +96,9 @@ public class ObjectTODOEditor : EditorWindow
 
         registeredList =
             rootVisualElement.Q<ListView>("registered-list");
+
+        unregisterButton =
+            rootVisualElement.Q<Button>("unregister-button");
 
         var todoField =
             rootVisualElement.Q<TextField>("todo-field");
@@ -198,6 +203,8 @@ public class ObjectTODOEditor : EditorWindow
             toggle.userData = index;
             deleteButton.userData = index;
         };
+
+        unregisterButton.clicked += UnregisterCurrentObject;
 
         // addButtonがクリックされたときの処理を登録
         addButton.clicked += () =>
@@ -370,6 +377,26 @@ public class ObjectTODOEditor : EditorWindow
         todoField.Focus();
     }
 
+    private void UnregisterCurrentObject()
+    {
+        if(currentTodoData == null) return;
+
+        bool unregister = EditorUtility.DisplayDialog(
+            "Object TODO",
+            $"「{currentTodoData.objectName}」のTODOリストを登録解除しますか？",
+            "登録解除",
+            "キャンセル"
+        );
+
+        if(!unregister) return;
+
+        ObjectTodoDatabase.instance.todoDataList.Remove(currentTodoData);
+
+        currentTodoData = null;
+
+        ObjectTodoDatabase.instance.SaveDatabase();
+    }
+
     #region 表示更新
     /// <summary>
     /// ウィンドウ表示形式切り替え処理
@@ -425,6 +452,9 @@ public class ObjectTODOEditor : EditorWindow
             todoList.itemsSource = null;
             // ListViewを更新
             todoList.RefreshItems();
+
+            RefreshUnregisterButton();
+
             return;
         }
         
@@ -441,12 +471,25 @@ public class ObjectTODOEditor : EditorWindow
         {
             todoList.itemsSource = null;
             todoList.RefreshItems();
+            RefreshUnregisterButton();
             return;
         }
 
         // ListViewのitemsSourceを更新
         todoList.itemsSource = currentTodoData.todos;
         todoList.RefreshItems();
+
+        RefreshUnregisterButton();
+    }
+
+    private void RefreshUnregisterButton()
+    {
+        if (unregisterButton == null) return;
+
+        unregisterButton.style.display = 
+            currentTodoData != null
+                ? DisplayStyle.Flex
+                : DisplayStyle.None;
     }
     #endregion
 

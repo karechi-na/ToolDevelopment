@@ -82,3 +82,8 @@
     width: 70px;
     margin-left: 6px;
 }
+
+.unregister-button{
+    margin-top: 12px;
+    height: 28px;
+}

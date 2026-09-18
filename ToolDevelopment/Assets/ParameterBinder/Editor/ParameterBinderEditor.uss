@@ -1,0 +1,154 @@
+/* ============================= */
+/* Root                          */
+/* ============================= */
+.parameter-binder-root{
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 6px;
+}
+
+
+/* ============================= */
+/* Header                        */
+/* ============================= */
+.header{
+    margin-top: 4px;
+    margin-bottom: 10px;
+
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.header-title{
+    font-size: 15px;
+    -unity-font-style: bold;
+
+    margin-bottom: 2px;
+}
+
+.header-description{
+    font-size: 11px;
+    opacity: 0.65;
+}
+
+
+/* ============================= */
+/* Settings                      */
+/* ============================= */
+.settings{
+    margin-bottom: 12px;
+
+    padding-bottom: 10px;
+
+    border-bottom-width: 1px;
+}
+
+
+/* ============================= */
+/* Bindings Section              */
+/* ============================= */
+.bindings-section{
+    margin-top: 4px;
+}
+
+.bindings-header{
+    flex-direction: row;
+    align-items: center;
+
+    margin-bottom: 4px;
+}
+
+.bindings-title{
+    flex-grow: 1;
+
+    font-size: 13px;
+    -unity-font-style: bold;
+}
+
+.bindings-summary{
+    -unity-font-style: bold;
+
+    min-width: 45px;
+
+    -unity-text-align: middle-right;
+}
+
+
+/* ============================= */
+/* Binding List                  */
+/* ============================= */
+
+.binding-container {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+
+/* í èÌÇÃBinding */
+.binding-row {
+    flex-direction: row;
+    align-items: center;
+
+    height: 28px;
+    margin-bottom: 4px;
+}
+
+.binding-status {
+    width: 110px;
+    min-width: 110px;
+
+    margin-left: 6px;
+
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.binding-source{
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.binding-arrow {
+    width: 35px;
+
+    -unity-text-align: middle-center;
+}
+
+.binding-target{
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.binding-result{
+    width: 70px;
+    -unity-text-align: middle-right;
+}
+
+.binding-remove{
+    width: 28px;
+    min-width: 28px;
+
+    margin-left: 4px;
+}
+
+.binding-summary {
+    margin-top: 5px;
+
+    -unity-font-style: bold;
+}
+
+.add-binding-button{
+    margin-top: 6px;
+}
